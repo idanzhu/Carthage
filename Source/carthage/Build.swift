@@ -24,7 +24,7 @@ extension BuildOptions: OptionsProtocol {
 			<*> mode <| Option<Bool>(key: "cache-builds", defaultValue: false, usage: "use cached builds when possible")
 			<*> mode <| Option<Bool>(key: "use-binaries", defaultValue: true, usage: "don't use downloaded binaries when possible")
             <*> mode <| Option<Bool>(key: "skip-archive", defaultValue: false, usage: "Skip archive when build Device SDK")
-            <*> mode <| Option<String?>(key: "custom", defaultValue: nil, usage: "Custom suffix for Cartfile")
+            <*> mode <| Option<String?>(key: "cartfile", defaultValue: nil, usage: "Custom name for Cartfiles")
 	}
 }
 

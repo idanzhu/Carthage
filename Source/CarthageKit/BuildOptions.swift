@@ -16,8 +16,8 @@ public struct BuildOptions {
 	public var useBinaries: Bool
     /// Skip archive when build Device SDK
     public var skipArchive: Bool
-    /// Custom suffix for Cartfile
-    public var custom: String?
+    /// Custom name for Cartfiles
+    public var cartfile: String?
     
 	public init(
 		configuration: String,
@@ -27,7 +27,7 @@ public struct BuildOptions {
 		cacheBuilds: Bool = true,
 		useBinaries: Bool = true,
         skipArchive: Bool = false,
-        custom: String? = nil
+        cartfile: String? = nil
 	) {
 		self.configuration = configuration
 		self.platforms = platforms
@@ -36,9 +36,9 @@ public struct BuildOptions {
 		self.cacheBuilds = cacheBuilds
 		self.useBinaries = useBinaries
         self.skipArchive = skipArchive
-        self.custom = custom
-        if let custom = custom {
-            Constants.Project.configure(with: custom)
+        self.cartfile = cartfile
+        if let cartfile = cartfile {
+            Constants.Project.configure(with: cartfile)
         }
 	}
 }

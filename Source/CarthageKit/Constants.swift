@@ -87,20 +87,14 @@ public struct Constants {
 
 	public struct Project {
         
-        public static func configure(with custom: String) {
-            guard !custom.isEmpty else { return }
-            guard custom.lowercased() != "private" && custom.lowercased() != "resolved" && !custom.contains(".") else {
-                fatalError("Invalid custom value: \(custom)")
+        public static func configure(with cartfile: String) {
+            guard !cartfile.isEmpty else { return }
+            guard !cartfile.contains(".") else {
+                fatalError("Invalid cartfile name: \(cartfile)")
             }
-            
-            cartfilePath = "Cartfile\(custom)"
-            privateCartfilePath = "Cartfile\(custom).private"
-            resolvedCartfilePath = "Cartfile\(custom).resolved"
-            
-            Constants.binariesFolderPath = "Carthage\(custom)/Build"
-            Constants.carthageProjectCheckoutsPath = "Carthage\(custom)/Checkouts"
-            
-            self.custom = custom
+            cartfilePath = cartfile
+            privateCartfilePath = "\(cartfile).private"
+            resolvedCartfilePath = "\(cartfile).resolved"
         }
         
         /// The relative path to a project's Cartfile.
@@ -111,9 +105,6 @@ public struct Constants {
         
         /// The relative path to a project's Cartfile.resolved.
         public static private(set) var resolvedCartfilePath = "Cartfile.resolved"
-        
-        /// Custom suffix
-        public static private(set) var custom: String?
 
 		/// The text that needs to exist in a GitHub Release asset's name, for it to be
 		/// tried as a binary framework.
